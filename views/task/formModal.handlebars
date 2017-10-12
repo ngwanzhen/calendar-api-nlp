@@ -1,0 +1,8 @@
+<h4>Form to Post</h4>
+{{!-- <input id="nlpInput" type="text" name="nlp string" placeholder="enter task, time, date"> --}}
+  <form action="/task/add" method="post">
+    <input type="text" name="title" placeholder="{{data.title}}" value="{{data.title}}">
+    <input type="text" name="scheduledStartDateTime" placeholder="{{data.scheduledStartDateTime}}" value="{{data.scheduledStartDateTime}}">
+    <input type="text" name="scheduledEndDateTime" placeholder="{{data.scheduledEndDateTime}}" value="{{data.scheduledEndDateTime}}">
+    <button class="butt">Save</button>
+  </form>

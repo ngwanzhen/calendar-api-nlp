@@ -1,0 +1,22 @@
+<h4>Filtered Tasks</h4>
+  {{#each data as |task|}}
+    <ul>
+      <li>{{task.title}}</li>
+    </ul>
+  {{/each}}
+
+<h4>Form for Single String input</h4>
+    <input id="nlpInput" type="text" placeholder="enter task, time, date">
+
+  <h4>Search by Keyword</h4>
+    <form action="/task/keyword" method="post">
+      <input type="text" name="keyword" placeholder="search for...">
+      <button>Search by keywords</button>
+    </form>
+
+  <h4>Search by Time</h4>
+  <form action="/task/time" method="post">
+    <input type="datetime-local" name="startTimeSearch" placeholder="startTimeSearch">
+    <input type="datetime-local" name="endTimeSearch" placeholder="endTimeSearch">
+    <button>Search by Time</button>
+  </form>
