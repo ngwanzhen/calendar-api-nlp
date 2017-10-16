@@ -16,9 +16,33 @@
 {{/if}}
 
 <h4>Form to Post</h4>
+{{#if arrData}}
+
+<h4>Recurring Events</h4>
+{{!-- {{#each arrData as |data|}} --}}
+  <ul>
+    <li><h4>{{arrData.0.title}}</h4>
+    <p>On {{moment arrData.0.scheduledStartDateTime format="dddd, DD MMMM"}}</p>
+    <p>@ {{moment arrData.0.scheduledStartDateTime format="HH:mm"}} - {{moment arrData.0.scheduledEndDateTime format="HH:mm"}}</p>
+    </li>
+  </ul>
+{{!-- {{/each}} --}}
+
   <form action="/task/add" method="post">
-    <input type="text" name="title" placeholder="{{data.title}}" value="{{data.title}}">
-    <input type="text" name="scheduledStartDateTime" placeholder="{{data.scheduledStartDateTime}}" value="{{data.scheduledStartDateTime}}">
-    <input type="text" name="scheduledEndDateTime" placeholder="{{data.scheduledEndDateTime}}" value="{{data.scheduledEndDateTime}}">
+    {{#each arrData as |data|}}
+    <input type="hidden" name="title" placeholder="{{data.title}}" value="{{data.title}}">
+    <input type="hidden" name="scheduledStartDateTime" placeholder="{{data.scheduledStartDateTime}}" value="{{data.scheduledStartDateTime}}">
+    <input type="hidden" name="scheduledEndDateTime" placeholder="{{data.scheduledEndDateTime}}" value="{{data.scheduledEndDateTime}}">
+    {{/each}}
+    <button class="butt">Save As Yearly Event</button>
+  </form>
+
+  {{else}}
+  <h4>Single Events</h4>
+  <form action="/task/add" method="post">
+    <input type="text" name="title" placeholder="{{singleData.title}}" value="{{singleData.title}}">
+    <input type="text" name="scheduledStartDateTime" placeholder="{{singleData.scheduledStartDateTime}}" value="{{singleData.scheduledStartDateTime}}">
+    <input type="text" name="scheduledEndDateTime" placeholder="{{singleData.scheduledEndDateTime}}" value="{{singleData.scheduledEndDateTime}}">
     <button class="butt">Save</button>
   </form>
+  {{/if}}

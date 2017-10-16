@@ -8,7 +8,7 @@ module.exports = (app, passport) => {
   app.get('/', (req, res) => res.render('home'))
   app.get('/task', userController.isLoggedIn, taskController.list)
 
-  app.post('/task/form', tempTaskFormController.checkClash, tempTaskFormController.tempFormPost)
+  app.post('/task/form', tempTaskFormController.tempFormPost)
   app.get('/task/form', tempTaskFormController.tempFormGet)
 
   app.post('/task/add', taskController.create)

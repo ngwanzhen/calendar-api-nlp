@@ -18,6 +18,9 @@
 * String inputs without AM/PM will be defaulted to PM if its between 1-4, else defaulted to AM
 * Week starts from Monday - Sunday i.e. inputting 'jogging this Sunday' results in 22nd Oct 2017
 * Doesn't account for different timezones
+* Recurring events for daily will be repeated for 365 days (1 year)
+* Recurring events for weekly will be repeated for 53 weeks (1 year)
+* Recurring events for monthly will be repeated for 12 months (1 year)
 
 ### ERD
 
@@ -38,7 +41,6 @@ https://code.tutsplus.com/tutorials/using-passport-with-sequelize-and-mysql--cms
 * Chai-datetime plugin to help test time equality http://chaijs.com/plugins/chai-datetime/
 * helper-moment is a good date time parser for SQL datetime
 https://github.com/helpers/handlebars-helper-moment
-
 
 ### Test Case Coverage
 Search for Time and Clashes
@@ -62,24 +64,17 @@ Failed
 * no AM/PM in user input results in AM by default. Added logic to only push to PM between 1-4. All else should be AM.
 
 ### Unsolved-challenges
+* Recurring every June doesn't trigger yearly event (needs the keyword birthday or anniversary)
+* Recurring every Tuesday doesn't trigger weekly event (needs the keyword week)
+* Recurring every day from 2 to 4pm doesn't seem to pickup time
+* to recognise 'for 20mins'
+* sequential
+* fix bug where 2 to 4am defaults to 14:00 to 4:00 coz of AM PM defaulting
+* enable search to happen in NLP will help resolve the no time problem (both will query for 12 noon)
+* fix interface
+* modularise the nlp function into separate file?
 * to not change page when parsing text just to show a form
 * parsing text to numbers for time
 * saying night does not equate PM
 * saying noon does nothing, midnight
 * last day of the month nothing
-
-### To-dos
-* recurring is able to have an array, but form is showing last temp event created. need to see how to delete entries before adding now. or.. send what was created back to form? instead of fetching from form.pop.
-* fix bug where 2 to 4am defaults to 14:00 to 4:00 coz of AM PM defaulting
-* remind the user accordingly
-* enable search to happen in NLP will help resolve the no time problem (both will query for 12 noon)
-* recurring
-Parents’   anniversary   on   25   feb
-○ jogging   at   6am   for   20   mins   every   day
-* sequential
-Tomorrow   8am,   leave   home   for   Tremendous   mall
-○ Then   visit   dentist   at   Green   hospital   at   10am
-○ Back   home   for   lunch   at   12pm
-* fix interface
-* modularise the nlp function into separate file?
-* delete tempTaskForm when add a new one, coz its not needed to store!

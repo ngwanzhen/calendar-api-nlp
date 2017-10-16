@@ -10,16 +10,30 @@ module.exports = {
     .catch(error => res.status(400).send(error))
   },
   create (req, res) {
-    // console.log(req.user.id)
-    return Task
+    let tempArr = []
+    if (req.body.title.length) {
+      for (let i = 0; i < req.body.title.length; i++) {
+        let eventObj = {}
+        eventObj.title = req.body.title[i]
+        eventObj.scheduledStartDateTime = req.body.scheduledStartDateTime[i]
+        eventObj.scheduledEndDateTime = req.body.scheduledEndDateTime[i]
+        tempArr.push(eventObj)
+      }
+    } else {
+      tempArr.push(req.body)
+    }
+
+    tempArr.forEach((e) => {
+      return Task
       .create({
-        title: req.body.title.toLowerCase(),
-        scheduledStartDateTime: req.body.scheduledStartDateTime,
-        scheduledEndDateTime: req.body.scheduledEndDateTime,
+        title: e.title.toLowerCase(),
+        scheduledStartDateTime: e.scheduledStartDateTime,
+        scheduledEndDateTime: e.scheduledEndDateTime,
         userId: req.user.id
       })
       .then(task => res.redirect('/task'))
       .catch(error => res.status(400).send(error))
+    })
   },
   findWord (req, res) {
     // console.log(req.body.keyword)
@@ -65,17 +79,6 @@ module.exports = {
         ]
       }
     })
-    //   where: {
-    //     userId: req.user.id,
-    //     scheduledStartDateTime: {
-    //       $lte: req.body.startTimeSearch},
-    //     $and: {
-    //       scheduledEndDateTime: {
-    //         $gte: req.body.endTimeSearch
-    //       }
-    //     }
-    //   }
-    // })
     .then(task => res.render('task/one', {data: task}))
     .catch(error => res.status(400).send(error))
   }

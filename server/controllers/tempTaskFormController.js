@@ -1,103 +1,176 @@
 const tempTaskForm = require('../models').tempTaskForm
 const Task = require('../models').Task
 const chrono = require('chrono-node')
-// const nlpInput = require('./nlpFunction')
+
 let parsedForm
 let resultsArr = []
 
 module.exports = {
-  tempFormPost (req, res) {
-    if (parsedForm) {
-      return tempTaskForm
-      .create({
-        title: parsedForm.title,
-        scheduledStartDateTime: parsedForm.scheduledStartDateTime,
-        scheduledEndDateTime: parsedForm.scheduledEndDateTime,
-        userId: req.user.id
-      })
-      .then(task => res.redirect('/task/form'))
-      .catch(error => res.status(400).send(error))
-    } else {
-      resultsArr.forEach((e) => {
-        return tempTaskForm
-        .create({
-          title: e.title,
-          scheduledStartDateTime: e.scheduledStartDateTime,
-          scheduledEndDateTime: e.scheduledEndDateTime,
-          userId: req.user.id
-        })
-        .then(task => res.redirect('/task/form'))
-        .catch(error => res.status(400).send(error))
-      })
-    }
-  },
   tempFormGet (req, res) {
+    console.log('getting form')
     return tempTaskForm
-  .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'] })
-  .then(tempTask => res.render('task/formModal', {data: tempTask.pop()}))
+  .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'],
+    where: { userId: req.user.id }
+  })
+  .then(tempTask => res.render('task/formModal', {arrData: tempTask}))
   .catch(error => res.status(400).send(error))
   },
-  checkClash (req, res, next) {
-    parsedForm = nlpMaster(req.body.nlp)
-    if (parsedForm) {
-      return Task
-      .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'],
-        where: {
-          $or: [
-            {userId: req.user.id,
-              $and:
-              {scheduledStartDateTime: {
-                $lte: parsedForm.scheduledStartDateTime},
-                scheduledEndDateTime: {
-                  $gte: parsedForm.scheduledEndDateTime
-                }
-              }},
-            {userId: req.user.id,
-              $and:
-              {scheduledStartDateTime: {
-                $gt: parsedForm.scheduledStartDateTime,
-                $lt: parsedForm.scheduledEndDateTime
-              }
-              }},
-            {userId: req.user.id,
-              $and:
-              {scheduledStartDateTime: {
-                $lte: parsedForm.scheduledStartDateTime},
-                scheduledEndDateTime: {
-                  $gt: parsedForm.scheduledStartDateTime
-                }
-              }}
-          ]
+
+  tempFormPost (req, res, next) {
+    // destroys all previous forms
+    return tempTaskForm
+      .destroy({
+        where: {userId: req.user.id}
+      })
+      // creates a new parsedForm or resultArr if recurring event
+      .then(() => {
+        parsedForm = nlpMaster(req.body.nlp)
+        if (parsedForm) {
+          return tempTaskForm
+          .create({
+            title: parsedForm.title,
+            scheduledStartDateTime: parsedForm.scheduledStartDateTime,
+            scheduledEndDateTime: parsedForm.scheduledEndDateTime,
+            userId: req.user.id
+          })
+        } else {
+          resultsArr.forEach((e) => {
+            return tempTaskForm
+            .create({
+              title: e.title,
+              scheduledStartDateTime: e.scheduledStartDateTime,
+              scheduledEndDateTime: e.scheduledEndDateTime,
+              userId: req.user.id
+            })
+          })
         }
       })
-        .then(clashTask => {
-          if (clashTask.length !== 0) { res.render('task/formModal', {clashTask: clashTask, data: parsedForm}) } else next()
-        })
-        .catch(error => res.status(400).send(error))
-    } else next()
+      // checks for clashes to be displayed if singular event. recurring event is assumed to be created regardless
+      .then(() => {
+        if (parsedForm) {
+          return Task
+            .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'],
+              where: {
+                $or: [
+                  {userId: req.user.id,
+                    $and:
+                    {scheduledStartDateTime: {
+                      $lte: parsedForm.scheduledStartDateTime},
+                      scheduledEndDateTime: {
+                        $gte: parsedForm.scheduledEndDateTime
+                      }
+                    }},
+                  {userId: req.user.id,
+                    $and:
+                    {scheduledStartDateTime: {
+                      $gt: parsedForm.scheduledStartDateTime,
+                      $lt: parsedForm.scheduledEndDateTime
+                    }
+                    }},
+                  {userId: req.user.id,
+                    $and:
+                    {scheduledStartDateTime: {
+                      $lte: parsedForm.scheduledStartDateTime},
+                      scheduledEndDateTime: {
+                        $gt: parsedForm.scheduledStartDateTime
+                      }
+                    }}
+                ]
+              }
+            })
+              .then(clashTask => {
+                console.log(clashTask)
+                // next()
+                // res.send(clashTask)
+                res.render('task/formModal', {clashTask: clashTask, singleData: parsedForm})
+              })
+              .catch(error => res.status(400).send(error))
+        } else res.redirect('/task/form')
+      })
+      .catch(error => res.status(400).send(error))
 
-// should be modularized elsewhere?
+// should be modularized somewhere else?
+
+// NLP master function to save results as array if recurring or object if singular event
     function nlpMaster (userInput) {
+      // for yearly events
       if (userInput.toLowerCase().split(' ').includes('anniversary') || userInput.toLowerCase().split(' ').includes('birthday')) {
-        let temp = nlpInput(userInput)
-        for (let i = 0; i < 10; i++) {
-          let dstart = temp.scheduledStartDateTime
-          let yearStart = dstart.getFullYear()
-          let monthStart = dstart.getMonth()
-          let dayStart = dstart.getDate()
-          let dend = temp.scheduledEndDateTime
-          let yearEnd = dend.getFullYear()
-          let monthEnd = dend.getMonth()
-          let dayEnd = dend.getDate()
+        let original = nlpInput(userInput)
+        let dstart = original.scheduledStartDateTime
+        let yearStart = dstart.getFullYear()
+        let monthStart = dstart.getMonth()
+        let dayStart = dstart.getDate()
+        let dend = original.scheduledEndDateTime
+        let yearEnd = dend.getFullYear()
+        let monthEnd = dend.getMonth()
+        let dayEnd = dend.getDate()
+        for (let i = 0; i < 100; i++) {
+          let temp = {}
           temp.scheduledStartDateTime = new Date(yearStart + i, monthStart, dayStart)
           temp.scheduledEndDateTime = new Date(yearEnd + i, monthEnd, dayEnd)
+          temp.title = original.title
           resultsArr.push(temp)
         }
-        console.log(resultsArr)
+        // for monthly events
+      } else if (userInput.toLowerCase().split(' ').includes('every') && userInput.toLowerCase().split(' ').includes('month')) {
+        let original = nlpInput(userInput)
+        let dstart = original.scheduledStartDateTime
+        let yearStart = dstart.getFullYear()
+        let monthStart = dstart.getMonth()
+        let dayStart = dstart.getDate()
+        let dend = original.scheduledEndDateTime
+        let yearEnd = dend.getFullYear()
+        let monthEnd = dend.getMonth()
+        let dayEnd = dend.getDate()
+        for (let i = 0; i < 13; i++) {
+          let temp = {}
+          temp.scheduledStartDateTime = new Date(yearStart, monthStart + i, dayStart)
+          temp.scheduledEndDateTime = new Date(yearEnd, monthEnd + i, dayEnd)
+          temp.title = original.title
+          resultsArr.push(temp)
+        }
+        // for weekly events
+      } else if (userInput.toLowerCase().split(' ').includes('every') && userInput.toLowerCase().split(' ').includes('week')) {
+        let original = nlpInput(userInput)
+        let dstart = original.scheduledStartDateTime
+        let yearStart = dstart.getFullYear()
+        let monthStart = dstart.getMonth()
+        let dayStart = dstart.getDate()
+        let dend = original.scheduledEndDateTime
+        let yearEnd = dend.getFullYear()
+        let monthEnd = dend.getMonth()
+        let dayEnd = dend.getDate()
+        for (let i = 0; i < 53; i++) {
+          let temp = {}
+          temp.scheduledStartDateTime = new Date(yearStart, monthStart, dayStart + (7 * i))
+          temp.scheduledEndDateTime = new Date(yearEnd + i, monthEnd, dayEnd + (7 * i))
+          temp.title = original.title
+          resultsArr.push(temp)
+        }
+        // for daily events
+      } else if (userInput.toLowerCase().split(' ').includes('every') && userInput.toLowerCase().split(' ').includes('day')) {
+        let original = nlpInput(userInput)
+        let dstart = original.scheduledStartDateTime
+        let yearStart = dstart.getFullYear()
+        let monthStart = dstart.getMonth()
+        let dayStart = dstart.getDate()
+        let dend = original.scheduledEndDateTime
+        let yearEnd = dend.getFullYear()
+        let monthEnd = dend.getMonth()
+        let dayEnd = dend.getDate()
+        for (let i = 0; i < 31; i++) {
+          let temp = {}
+          temp.scheduledStartDateTime = new Date(yearStart, monthStart, dayStart + i)
+          temp.scheduledEndDateTime = new Date(yearEnd + i, monthEnd, dayEnd + i)
+          temp.title = original.title
+          resultsArr.push(temp)
+        }
       } else {
         return nlpInput(userInput)
       }
     }
+
+// changing sunday to start of week
     function nlpInput (userInput) {
       userInput = userInput.replace(/[!@#?$%^&*~]/g, '')
       let results
@@ -143,6 +216,7 @@ module.exports = {
         formFilled = ''
       }
 
+// if AM/PM not in user input
       function AMorPM (results) {
         results.forEach(function (result) {
           if (!result.start.isCertain('meridiem') &&
@@ -154,6 +228,7 @@ module.exports = {
         return results
       }
 
+// extracts keywords after stripping out date/time
       function extract (original, timedate) {
         let originalArr = original.split(' ')
         let toremove = timedate.replace(/[,!@#?$%^&*~]/g, '').split(' ')
@@ -162,5 +237,4 @@ module.exports = {
       }
     }
   }
-
 }
