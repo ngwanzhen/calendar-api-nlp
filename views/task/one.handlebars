@@ -1,9 +1,12 @@
 <h4>Filtered Tasks</h4>
-  {{#each data as |task|}}
-    <ul>
-      <li>{{task.title}}</li>
-    </ul>
-  {{/each}}
+{{#each data as |task|}}
+  <ul>
+    <li><h4>{{task.title}}</h4>
+    <p>On {{moment task.scheduledStartDateTime format="dddd, DD MMMM YYYY"}}</p>
+    <p>@ {{moment task.scheduledStartDateTime format="HH:mm"}} - {{moment task.scheduledEndDateTime format="HH:mm"}}</p>
+    </li>
+  </ul>
+{{/each}}
 
 <h4>Form for Single String input</h4>
     <input id="nlpInput" type="text" placeholder="enter task, time, date">

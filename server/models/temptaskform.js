@@ -15,11 +15,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   })
 
-  // tempTaskForm.associate = (models) => {
-  //   tempTaskForm.belongsTo(models.Task, {
-  //     foreignKey: 'taskId',
-  //     onDelete: 'CASCADE'
-  //   })
-  // }
+  tempTaskForm.associate = (models) => {
+    tempTaskForm.belongsTo(models.User, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    })
+  }
+
   return tempTaskForm
 }
