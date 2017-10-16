@@ -63,7 +63,9 @@ Failed
 * join wedding party at Raffles 'this Sunday' at 9pm results in 'last Sunday' because NLP assumes Sunday is start of week
 * no AM/PM in user input results in AM by default. Added logic to only push to PM between 1-4. All else should be AM.
 
-### Unsolved-challenges
+### Unsolved-challenges /  Todos
+* add routes for task/list/today and month and all to help front-end link up accordingly
+* bulk update for recurring events has setheader issues crashing the server
 * Recurring every June doesn't trigger yearly event (needs the keyword birthday or anniversary)
 * Recurring every Tuesday doesn't trigger weekly event (needs the keyword week)
 * Recurring every day from 2 to 4pm doesn't seem to pickup time
@@ -71,7 +73,6 @@ Failed
 * sequential
 * fix bug where 2 to 4am defaults to 14:00 to 4:00 coz of AM PM defaulting
 * enable search to happen in NLP will help resolve the no time problem (both will query for 12 noon)
-* fix interface
 * modularise the nlp function into separate file?
 * to not change page when parsing text just to show a form
 * parsing text to numbers for time

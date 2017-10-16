@@ -1,3 +1,6 @@
+<div class="container">
+  <div class="right">
+
 {{#if clashTask}}
   <h4>Clashes</h4>
 
@@ -14,19 +17,18 @@
   <h4>No Clashes!</h4>
 
 {{/if}}
+</div>
 
-<h4>Form to Post</h4>
+<div class="left">
+<h4>Please confirm time and date</h4>
 {{#if arrData}}
 
-<h4>Recurring Events</h4>
-{{!-- {{#each arrData as |data|}} --}}
   <ul>
     <li><h4>{{arrData.0.title}}</h4>
     <p>On {{moment arrData.0.scheduledStartDateTime format="dddd, DD MMMM"}}</p>
     <p>@ {{moment arrData.0.scheduledStartDateTime format="HH:mm"}} - {{moment arrData.0.scheduledEndDateTime format="HH:mm"}}</p>
     </li>
   </ul>
-{{!-- {{/each}} --}}
 
   <form action="/task/add" method="post">
     {{#each arrData as |data|}}
@@ -34,15 +36,16 @@
     <input type="hidden" name="scheduledStartDateTime" placeholder="{{data.scheduledStartDateTime}}" value="{{data.scheduledStartDateTime}}">
     <input type="hidden" name="scheduledEndDateTime" placeholder="{{data.scheduledEndDateTime}}" value="{{data.scheduledEndDateTime}}">
     {{/each}}
-    <button class="butt">Save As Yearly Event</button>
+    <button class="waves-effect waves-light btn">Save As Recurring Event</button>
   </form>
 
   {{else}}
-  <h4>Single Events</h4>
   <form action="/task/add" method="post">
     <input type="text" name="title" placeholder="{{singleData.title}}" value="{{singleData.title}}">
-    <input type="text" name="scheduledStartDateTime" placeholder="{{singleData.scheduledStartDateTime}}" value="{{singleData.scheduledStartDateTime}}">
-    <input type="text" name="scheduledEndDateTime" placeholder="{{singleData.scheduledEndDateTime}}" value="{{singleData.scheduledEndDateTime}}">
-    <button class="butt">Save</button>
+    <p>Starts At</p><input type="text" name="scheduledStartDateTime" placeholder="{{singleData.scheduledStartDateTime}}" value="{{singleData.scheduledStartDateTime}}">
+    <p>Ends At</p><input type="text" name="scheduledEndDateTime" placeholder="{{singleData.scheduledEndDateTime}}" value="{{singleData.scheduledEndDateTime}}">
+    <button class="waves-effect waves-light btn">Confirm</button>
   </form>
   {{/if}}
+</div>
+</div>

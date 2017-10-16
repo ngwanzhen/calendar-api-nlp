@@ -1,4 +1,5 @@
 const Task = require('../models').Task
+// const moment = require('moment')
 
 module.exports = {
   list (req, res) {
@@ -9,9 +10,37 @@ module.exports = {
     .then(task => res.render('task/list', {data: task}))
     .catch(error => res.status(400).send(error))
   },
+  day (req, res) {
+    return Task
+    .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'], order: [['scheduledStartDateTime', 'DESC']],
+      where: { userId: req.user.id, scheduledStartDateTime: {
+        $lte: new Date().setHours(24, 0, 0, 0)},
+        scheduledEndDateTime: {
+          $gte: new Date().setHours(0, 0, 0, 0) }
+      }
+    })
+    .then(task => res.render('task/list', {data: task}))
+    .catch(error => res.status(400).send(error))
+  },
+  month (req, res) {
+    let date = new Date(), y = date.getFullYear(), m = date.getMonth()
+    let firstDay = new Date(y, m, 1)
+    let lastDay = new Date(y, m + 1, 0)
+
+    return Task
+    .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'], order: [['scheduledStartDateTime', 'DESC']],
+      where: { userId: req.user.id, scheduledStartDateTime: {
+        $lte: lastDay },
+        scheduledEndDateTime: {
+          $gte: firstDay }
+      }
+    })
+    .then(task => res.render('task/list', {data: task}))
+    .catch(error => res.status(400).send(error))
+  },
   create (req, res) {
     let tempArr = []
-    if (req.body.title.length) {
+    if (Array.isArray(req.body.title)) {
       for (let i = 0; i < req.body.title.length; i++) {
         let eventObj = {}
         eventObj.title = req.body.title[i]

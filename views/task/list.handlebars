@@ -1,29 +1,50 @@
-<h4>All Tasks</h4>
-
+<div class="container">
+<div class="right">
+  <h4>Saved Tasks</h4>
+<nav>
+<div class="nav-wrapper">
+  <a href="#" class="brand-logo right">Logo</a>
+  <ul id="nav-mobile" class="left hide-on-med-and-down">
+    <li><a href="/task/day">Today</a></li>
+    <li><a href="/task/month">Month</a></li>
+    <li><a href="/task">All</a></li>
+  </ul>
+</div>
+</nav>
+  <ul class="collection">
   {{#each data as |task|}}
-    <ul>
-      <li><h4>{{task.title}}</h4>
+    <li class="collection-item avatar">
+      <h4>{{task.title}}</h4>
       <p>On {{moment task.scheduledStartDateTime format="dddd, DD MMMM YYYY"}}</p>
       <p>@ {{moment task.scheduledStartDateTime format="HH:mm"}} - {{moment task.scheduledEndDateTime format="HH:mm"}}</p>
-      </li>
-    </ul>
+    </li>
   {{/each}}
+</ul>
+</div>
 
-<h4>Form for Single String input</h4>
+<div class="left">
+<h4>What task would you like to add?</h4>
 <form action="/task/form" method="post">
     <input id="nlpInput" type="text" name="nlp" placeholder="enter task, time, date">
-    <button>Add new task</button>
+    <button class="waves-effect waves-light btn">Add new task</button>
 </form>
 
-<h4>Search by Keyword</h4>
+<h4>Filter for Saved Tasks</h4>
     <form action="/task/keyword" method="post">
-      <input type="text" name="keyword" placeholder="search for...">
-      <button>Search by keywords</button>
+      <input type="text" name="keyword" placeholder="Search by keyword...">
+      <button class="waves-effect waves-light btn">Search by keywords</button>
     </form>
 
-  <h4>Search by Time</h4>
-  <form action="/task/time" method="post">
-    <input type="datetime-local" name="startTimeSearch" placeholder="startTimeSearch">
-    <input type="datetime-local" name="endTimeSearch" placeholder="endTimeSearch">
+    <form action="/task/time" method="post">
+    <input type="text" placeholder="2017-01-01 00:00" class="datetimepicker" name="startTimeSearch">
+    <input type="text" placeholder="2017-01-01 00:00" class="datetimepicker" name="endTimeSearch">
+    <button class="waves-effect waves-light btn">Search by Time</button>
+    </form>
+</div>
+</div>
+  {{!-- <form action="/task/time" method="post">
+    <input type="datetime-local" name="date" placeholder="startTimeSearch" class="c-datepicker-input">
+    <input type="text" name="startTime" placeholder="startTimeSearch" class="timepicker">
+    <input type="text" name="endTime" placeholder="endTimeSearch" class="timepicker">
     <button>Search by Time</button>
-  </form>
+  </form> --}}
