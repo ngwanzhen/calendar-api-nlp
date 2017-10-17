@@ -1,7 +1,13 @@
 .container{
-  display: inline-flex;
+  display: flex;
+  max-width: 80%;
 }
-.left{
-width: 50%;}
-.right{
-width: 50%;}
+.leftDiv{
+max-width: 50%;
+margin-right: 5%;
+}
+.rightDiv{
+width: 50%;
+margin-left: 5%;
+
+}

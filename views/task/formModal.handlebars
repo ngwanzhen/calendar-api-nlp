@@ -1,25 +1,6 @@
 <div class="container">
-  <div class="right">
 
-{{#if clashTask}}
-  <h4>Clashes</h4>
-
-  {{#each clashTask as |task|}}
-    <ul>
-      <li><h4>{{task.title}}</h4>
-      <p>On {{moment task.scheduledStartDateTime format="dddd, DD MMMM YYYY"}}</p>
-      <p>@ {{moment task.scheduledStartDateTime format="HH:mm"}} - {{moment task.scheduledEndDateTime format="HH:mm"}}</p>
-      </li>
-    </ul>
-  {{/each}}
-
-  {{else}}
-  <h4>No Clashes!</h4>
-
-{{/if}}
-</div>
-
-<div class="left">
+<div class="leftDiv">
 <h4>Please confirm time and date</h4>
 {{#if arrData}}
 
@@ -39,6 +20,16 @@
     <button class="waves-effect waves-light btn">Save As Recurring Event</button>
   </form>
 
+  {{else if sequentialData}}
+  <form action="/task/add" method="post">
+    {{#each sequentialData as |sequentialData|}}
+    <input type="text" name="title" placeholder="{{sequentialData.title}}" value="{{sequentialData.title}}">
+    <p>Starts At</p><input type="text" name="scheduledStartDateTime" placeholder="{{sequentialData.scheduledStartDateTime}}" value="{{sequentialData.scheduledStartDateTime}}">
+    <p>Ends At</p><input type="text" name="scheduledEndDateTime" placeholder="{{sequentialData.scheduledEndDateTime}}" value="{{sequentialData.scheduledEndDateTime}}">
+    {{/each}}
+    <button class="waves-effect waves-light btn">Confirm events for the day</button>
+  </form>
+
   {{else}}
   <form action="/task/add" method="post">
     <input type="text" name="title" placeholder="{{singleData.title}}" value="{{singleData.title}}">
@@ -46,6 +37,28 @@
     <p>Ends At</p><input type="text" name="scheduledEndDateTime" placeholder="{{singleData.scheduledEndDateTime}}" value="{{singleData.scheduledEndDateTime}}">
     <button class="waves-effect waves-light btn">Confirm</button>
   </form>
+
   {{/if}}
 </div>
+
+<div class="rightDiv">
+
+{{#if clashTask}}
+<h4>Clashes</h4>
+
+{{#each clashTask as |task|}}
+  <ul>
+    <li><h4>{{task.title}}</h4>
+    <p>On {{moment task.scheduledStartDateTime format="dddd, DD MMMM YYYY"}}</p>
+    <p>@ {{moment task.scheduledStartDateTime format="HH:mm"}} - {{moment task.scheduledEndDateTime format="HH:mm"}}</p>
+    </li>
+  </ul>
+{{/each}}
+
+{{else}}
+<h4>No Clashes!</h4>
+
+{{/if}}
+</div>
+
 </div>

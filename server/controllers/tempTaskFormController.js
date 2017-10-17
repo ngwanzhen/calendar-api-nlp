@@ -4,6 +4,7 @@ const chrono = require('chrono-node')
 const notifier = require('node-notifier')
 
 let parsedForm
+let sequentialArr
 
 module.exports = {
   tempFormGet (req, res) {
@@ -22,10 +23,34 @@ module.exports = {
       .destroy({
         where: {userId: req.user.id}
       })
-      // creates a new parsedForm or resultArr if recurring event
+      // creates a new parsedForm or resultArr if recurring event or sequentialForm
       .then(() => {
         parsedForm = nlpMaster(req.body.nlp)
-        if (parsedForm) {
+        if (req.body.sequentialTask.filter(Boolean).length !== 0) {
+          let tempSequentialArr = []
+          if (!Array.isArray(req.body.sequentialTask)) {
+            tempSequentialArr.push(req.body.sequentialTask)
+          } else tempSequentialArr = req.body.sequentialTask
+          sequentialArr = []
+          let previousDate = new Date(parsedForm.scheduledStartDateTime).toDateString()
+          sequentialArr.push(parsedForm)
+
+          tempSequentialArr.forEach((e) => {
+            let sequentialTask = e + ' ' + previousDate
+            let sequentialForm = nlpMaster(sequentialTask)
+            sequentialArr.push(sequentialForm)
+          })
+
+          sequentialArr.forEach((e) => {
+            return tempTaskForm
+            .create({
+              title: e.title,
+              scheduledStartDateTime: e.scheduledStartDateTime,
+              scheduledEndDateTime: e.scheduledEndDateTime,
+              userId: req.user.id
+            })
+          })
+        } else if (parsedForm) {
           return tempTaskForm
           .create({
             title: parsedForm.title,
@@ -48,6 +73,7 @@ module.exports = {
       // checks for clashes to be displayed if singular event. recurring event is assumed to be created regardless
       .then(() => {
         if (parsedForm) {
+          console.log(`parsedForm ${parsedForm}`)
           return Task
             .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'],
               where: {
@@ -80,8 +106,9 @@ module.exports = {
             })
               .then(clashTask => {
                 // next()
-                // res.send(clashTask)
-                res.render('task/formModal', {clashTask: clashTask, singleData: parsedForm})
+                // res.send(sequentialForm)
+                res.render('task/formModal', {clashTask: clashTask, singleData: parsedForm,
+                  sequentialData: sequentialArr})
               })
               .catch(error => res.status(400).send(error))
         } else res.redirect('/task/form')
@@ -199,6 +226,7 @@ module.exports = {
           temp.title = original.title
           resultsArr.push(temp)
         }
+        // else singular event
       } else {
         return nlpInput(userInput)
       }
