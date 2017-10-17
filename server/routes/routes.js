@@ -19,6 +19,8 @@ module.exports = (app, passport) => {
 // additional routes for front end to create day / month view
   app.get('/task/day', userController.isLoggedIn, taskController.day)
   app.get('/task/month', userController.isLoggedIn, taskController.month)
+  app.get('/task/list', userController.isLoggedIn, taskController.list)
+  app.get('/task/remind', userController.isLoggedIn, taskController.remind)
 
 // user Auth routes
   app.get('/userAuth/register', userController.signup)

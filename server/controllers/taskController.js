@@ -2,6 +2,7 @@ const Task = require('../models').Task
 // const moment = require('moment')
 
 module.exports = {
+  // find all tasks
   list (req, res) {
     return Task
     .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'], order: [['scheduledStartDateTime', 'DESC']],
@@ -10,6 +11,7 @@ module.exports = {
     .then(task => res.render('task/list', {data: task}))
     .catch(error => res.status(400).send(error))
   },
+  // find task for today
   day (req, res) {
     return Task
     .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'], order: [['scheduledStartDateTime', 'DESC']],
@@ -22,6 +24,7 @@ module.exports = {
     .then(task => res.render('task/list', {data: task}))
     .catch(error => res.status(400).send(error))
   },
+  // find task for this month
   month (req, res) {
     let date = new Date(), y = date.getFullYear(), m = date.getMonth()
     let firstDay = new Date(y, m, 1)
@@ -30,7 +33,7 @@ module.exports = {
     return Task
     .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'], order: [['scheduledStartDateTime', 'DESC']],
       where: { userId: req.user.id, scheduledStartDateTime: {
-        $lte: lastDay },
+        $lt: lastDay },
         scheduledEndDateTime: {
           $gte: firstDay }
       }
@@ -38,6 +41,20 @@ module.exports = {
     .then(task => res.render('task/list', {data: task}))
     .catch(error => res.status(400).send(error))
   },
+  // find task starting in 15 mins
+  remind (req, res) {
+    return Task
+    .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'], order: [['scheduledStartDateTime', 'DESC']],
+      where: { userId: req.user.id, scheduledStartDateTime: {
+        $lte: new Date().getTime() + (15 * 60 * 1000) },
+        scheduledEndDateTime: {
+          $gte: new Date().getTime() }
+      }
+    })
+    .then(task => res.render('task/list', {data: task}))
+    .catch(error => res.status(400).send(error))
+  },
+  // inserting new Task into DB
   create (req, res) {
     let tempArr = []
     if (Array.isArray(req.body.title)) {
@@ -59,8 +76,8 @@ module.exports = {
       .then(task => res.redirect('/task'))
       .catch(error => res.status(400).send(error))
   },
+  // find task by keywords
   findWord (req, res) {
-    // console.log(req.body.keyword)
     return Task
     .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'],
       where: {
@@ -72,6 +89,7 @@ module.exports = {
     .then(task => res.render('task/one', {data: task}))
     .catch(error => res.status(400).send(error))
   },
+  // find tasks by time
   findTime (req, res) {
     return Task
     .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'],

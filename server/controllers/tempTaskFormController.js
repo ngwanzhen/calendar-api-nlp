@@ -92,75 +92,110 @@ module.exports = {
 
 // NLP master function to save results as array if recurring or object if singular event
     function nlpMaster (userInput) {
+      let original = nlpInput(userInput)
+      let dstart = original.scheduledStartDateTime
+      let yearStart = dstart.getFullYear()
+      let monthStart = dstart.getMonth()
+      let dayStart = dstart.getDate()
+      let hourStart = dstart.getHours()
+      let minuteStart = dstart.getMinutes()
+      let dend = original.scheduledEndDateTime
+      let yearEnd = dend.getFullYear()
+      let monthEnd = dend.getMonth()
+      let dayEnd = dend.getDate()
+      let hourEnd = dend.getHours()
+      let minuteEnd = dend.getMinutes()
+
       // for yearly events
       if (userInput.toLowerCase().split(' ').includes('anniversary') || userInput.toLowerCase().split(' ').includes('birthday')) {
-        let original = nlpInput(userInput)
-        let dstart = original.scheduledStartDateTime
-        let yearStart = dstart.getFullYear()
-        let monthStart = dstart.getMonth()
-        let dayStart = dstart.getDate()
-        let dend = original.scheduledEndDateTime
-        let yearEnd = dend.getFullYear()
-        let monthEnd = dend.getMonth()
-        let dayEnd = dend.getDate()
-        for (let i = 0; i < 100; i++) {
+        // let original = nlpInput(userInput)
+        // let dstart = original.scheduledStartDateTime
+        // let yearStart = dstart.getFullYear()
+        // let monthStart = dstart.getMonth()
+        // let dayStart = dstart.getDate()
+        // let hourStart = dstart.getHours()
+        // let minuteStart = dstart.getMinutes()
+        // let dend = original.scheduledEndDateTime
+        // let yearEnd = dend.getFullYear()
+        // let monthEnd = dend.getMonth()
+        // let dayEnd = dend.getDate()
+        // let hourEnd = dend.getHours()
+        // let minuteEnd = dend.getMinutes()
+
+        for (let i = 0; i < 101; i++) {
           let temp = {}
-          temp.scheduledStartDateTime = new Date(yearStart + i, monthStart, dayStart)
-          temp.scheduledEndDateTime = new Date(yearEnd + i, monthEnd, dayEnd)
+          temp.scheduledStartDateTime = new Date(yearStart + i, monthStart, dayStart, hourStart, minuteStart)
+          temp.scheduledEndDateTime = new Date(yearEnd + i, monthEnd, dayEnd, hourEnd, minuteEnd)
           temp.title = original.title
           resultsArr.push(temp)
         }
         // for monthly events
       } else if (userInput.toLowerCase().split(' ').includes('every') && userInput.toLowerCase().split(' ').includes('month')) {
-        let original = nlpInput(userInput)
-        let dstart = original.scheduledStartDateTime
-        let yearStart = dstart.getFullYear()
-        let monthStart = dstart.getMonth()
-        let dayStart = dstart.getDate()
-        let dend = original.scheduledEndDateTime
-        let yearEnd = dend.getFullYear()
-        let monthEnd = dend.getMonth()
-        let dayEnd = dend.getDate()
+        // let original = nlpInput(userInput)
+        // let dstart = original.scheduledStartDateTime
+        // let yearStart = dstart.getFullYear()
+        // let monthStart = dstart.getMonth()
+        // let dayStart = dstart.getDate()
+        // let hourStart = dstart.getHours()
+        // let minuteStart = dstart.getMinutes()
+        // let dend = original.scheduledEndDateTime
+        // let yearEnd = dend.getFullYear()
+        // let monthEnd = dend.getMonth()
+        // let dayEnd = dend.getDate()
+        // let hourEnd = dend.getHours()
+        // let minuteEnd = dend.getMinutes()
+
         for (let i = 0; i < 13; i++) {
           let temp = {}
-          temp.scheduledStartDateTime = new Date(yearStart, monthStart + i, dayStart)
-          temp.scheduledEndDateTime = new Date(yearEnd, monthEnd + i, dayEnd)
+          temp.scheduledStartDateTime = new Date(yearStart, monthStart + i, dayStart, hourStart, minuteStart)
+          temp.scheduledEndDateTime = new Date(yearEnd, monthEnd + i, dayEnd, hourEnd, minuteEnd)
           temp.title = original.title
           resultsArr.push(temp)
         }
         // for weekly events
       } else if (userInput.toLowerCase().split(' ').includes('every') && userInput.toLowerCase().split(' ').includes('week')) {
         let original = nlpInput(userInput)
-        let dstart = original.scheduledStartDateTime
-        let yearStart = dstart.getFullYear()
-        let monthStart = dstart.getMonth()
-        let dayStart = dstart.getDate()
-        let dend = original.scheduledEndDateTime
-        let yearEnd = dend.getFullYear()
-        let monthEnd = dend.getMonth()
-        let dayEnd = dend.getDate()
-        for (let i = 0; i < 53; i++) {
+        console.log(original)
+        // let dstart = original.scheduledStartDateTime
+        // let yearStart = dstart.getFullYear()
+        // let monthStart = dstart.getMonth()
+        // let dayStart = dstart.getDate()
+        // let hourStart = dstart.getHours()
+        // let minuteStart = dstart.getMinutes()
+        // let dend = original.scheduledEndDateTime
+        // let yearEnd = dend.getFullYear()
+        // let monthEnd = dend.getMonth()
+        // let dayEnd = dend.getDate()
+        // let hourEnd = dend.getHours()
+        // let minuteEnd = dend.getMinutes()
+
+        for (let i = 0; i < 54; i++) {
           let temp = {}
-          temp.scheduledStartDateTime = new Date(yearStart, monthStart, dayStart + (7 * i))
-          temp.scheduledEndDateTime = new Date(yearEnd + i, monthEnd, dayEnd + (7 * i))
+          temp.scheduledStartDateTime = new Date(yearStart, monthStart, dayStart + (7 * i), hourStart, minuteStart)
+          temp.scheduledEndDateTime = new Date(yearEnd + i, monthEnd, dayEnd + (7 * i), hourEnd, minuteEnd)
           temp.title = original.title
           resultsArr.push(temp)
         }
         // for daily events
       } else if (userInput.toLowerCase().split(' ').includes('every') && userInput.toLowerCase().split(' ').includes('day')) {
-        let original = nlpInput(userInput)
-        let dstart = original.scheduledStartDateTime
-        let yearStart = dstart.getFullYear()
-        let monthStart = dstart.getMonth()
-        let dayStart = dstart.getDate()
-        let dend = original.scheduledEndDateTime
-        let yearEnd = dend.getFullYear()
-        let monthEnd = dend.getMonth()
-        let dayEnd = dend.getDate()
+        // let original = nlpInput(userInput)
+        // let dstart = original.scheduledStartDateTime
+        // let yearStart = dstart.getFullYear()
+        // let monthStart = dstart.getMonth()
+        // let dayStart = dstart.getDate()
+        // let hourStart = dstart.getHours()
+        // let minuteStart = dstart.getMinutes()
+        // let dend = original.scheduledEndDateTime
+        // let yearEnd = dend.getFullYear()
+        // let monthEnd = dend.getMonth()
+        // let dayEnd = dend.getDate()
+        // let hourEnd = dend.getHours()
+        // let minuteEnd = dend.getMinutes()
+
         for (let i = 0; i < 31; i++) {
           let temp = {}
-          temp.scheduledStartDateTime = new Date(yearStart, monthStart, dayStart + i)
-          temp.scheduledEndDateTime = new Date(yearEnd + i, monthEnd, dayEnd + i)
+          temp.scheduledStartDateTime = new Date(yearStart, monthStart, dayStart + i, hourStart, minuteStart)
+          temp.scheduledEndDateTime = new Date(yearEnd + i, monthEnd, dayEnd + i, hourEnd, minuteStart)
           temp.title = original.title
           resultsArr.push(temp)
         }

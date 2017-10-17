@@ -1,13 +1,11 @@
 ### Task Management App
 
 ### User Stories
-* able to add task and time in a single string input such as
-* swimming next Friday at 2pm
-* Nov 15, 2017, Harry’s   birthday
+* able to add task and time in a single string input such as 'swimming next Friday at 2pm', 'Nov 15, 2017, Harry’s   birthday'
 * able to search / filter for relevant tasks by time and keywords
 * user able to signup / login to see his own tasks
 * user able to check for clashes in timing before proceeding to book a slot
-* able to add recurring schedule using the words 'birthday' or 'anniversary'
+* able to add recurring schedule using the words 'birthday' or 'anniversary' or 'every day / month / week'
 
 ### Assumptions
 * Upon clashes, users will be shown clashing schedule, but still allowed to proceed with booking
@@ -18,11 +16,14 @@
 * String inputs without AM/PM will be defaulted to PM if its between 1-4, else defaulted to AM
 * Week starts from Monday - Sunday i.e. inputting 'jogging this Sunday' results in 22nd Oct 2017
 * Doesn't account for different timezones
-* Recurring events for daily will be repeated for 365 days (1 year)
+* Recurring events for daily will be repeated for 30 days
 * Recurring events for weekly will be repeated for 53 weeks (1 year)
 * Recurring events for monthly will be repeated for 12 months (1 year)
 
 ### ERD
+User has many tempTaskForm and tasks
+tempTaskForm belongs to users
+Task belongs to users
 ![ERD](public/img/erd.png?raw=true 'start')
 
 ### Built With
@@ -60,10 +61,13 @@ https://github.com/smalot/bootstrap-datetimepicker
 * added routes for past due events (facilitate reminder function)
 
 ### Unsolved-challenges /  Todos
-* add routes for reminder
 * recurring test cases to fix
 * to recognise 'for 20mins'
 * sequential
 * fix bug where 2 to 4am defaults to 14:00 to 4:00 coz of AM PM defaulting
+* cleaning up keywords to remove verbs like go using 'compromise' package
+https://github.com/nlp-compromise/compromise
+* allowing search to be performed in NLP using 'natural' package
+https://github.com/NaturalNode/natural
 * modularise the nlp function into separate file?
 * fix nlp edge cases (e.g. last day of month)
