@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   tempTaskForm.associate = (models) => {
     tempTaskForm.belongsTo(models.User, {
       foreignKey: 'userId',
-      onDelete: 'CASCADE'
+      onDelete: 'CASCADE',
+      allowNull: false
     })
   }
 

@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   Task.associate = (models) => {
     Task.belongsTo(models.User, {
       foreignKey: 'userId',
-      onDelete: 'CASCADE'
+      onDelete: 'CASCADE',
+      allowNull: false
     })
   }
 

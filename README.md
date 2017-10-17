@@ -23,6 +23,7 @@
 * Recurring events for monthly will be repeated for 12 months (1 year)
 
 ### ERD
+![ERD](public/img/erd.png?raw=true 'start')
 
 ### Built With
 * Node
@@ -36,46 +37,33 @@
 https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize
 * Chrono-node is a good NLP parser that extracts date and times
 https://github.com/wanasit/chrono
-* Passport and sequelize tutorial
+* Passport, sequelize, bcrypt tutorial
 https://code.tutsplus.com/tutorials/using-passport-with-sequelize-and-mysql--cms-27537
 * Chai-datetime plugin to help test time equality http://chaijs.com/plugins/chai-datetime/
-* helper-moment is a good date time parser for SQL datetime
+* helper-moment is a good handlebars date time parser for SQL datetime
 https://github.com/helpers/handlebars-helper-moment
+* bootstrap-datetimepicker is a good css plugin that makes form input for date easier
+https://github.com/smalot/bootstrap-datetimepicker
+* Materialize CSS
+* node-notifier for error alerts
 
 ### Test Case Coverage
-Search for Time and Clashes
-* Normal
-Passed
-* for a booked time slot of 2-6
-* searched for 2-4
-* searched for 1-3
-* searched for 4-8
-Failed
-* Negative
-* searched for 1-2
-Passed
-Failed
-* Edge
-Passed
-Failed
+![Test Cases](public/img/test-cases.png?raw=true 'start')
 
 ### Solved bugs
 * join wedding party at Raffles 'this Sunday' at 9pm results in 'last Sunday' because NLP assumes Sunday is start of week
 * no AM/PM in user input results in AM by default. Added logic to only push to PM between 1-4. All else should be AM.
+* creating multiple rows for recurring events has setheader issues in sequelize crashing the server.
+
+### Front end implementation considerations
+* added routes for task/day (list all tasks for today) and task/month (list all tasks this month) to help front-end create calendar view accordingly
+* added routes for past due events (facilitate reminder function)
 
 ### Unsolved-challenges /  Todos
-* add routes for task/list/today and month and all to help front-end link up accordingly
-* bulk update for recurring events has setheader issues crashing the server
-* Recurring every June doesn't trigger yearly event (needs the keyword birthday or anniversary)
-* Recurring every Tuesday doesn't trigger weekly event (needs the keyword week)
-* Recurring every day from 2 to 4pm doesn't seem to pickup time
+* add routes for reminder
+* recurring test cases to fix
 * to recognise 'for 20mins'
 * sequential
 * fix bug where 2 to 4am defaults to 14:00 to 4:00 coz of AM PM defaulting
-* enable search to happen in NLP will help resolve the no time problem (both will query for 12 noon)
 * modularise the nlp function into separate file?
-* to not change page when parsing text just to show a form
-* parsing text to numbers for time
-* saying night does not equate PM
-* saying noon does nothing, midnight
-* last day of the month nothing
+* fix nlp edge cases (e.g. last day of month)

@@ -46,23 +46,18 @@ module.exports = {
         eventObj.title = req.body.title[i]
         eventObj.scheduledStartDateTime = req.body.scheduledStartDateTime[i]
         eventObj.scheduledEndDateTime = req.body.scheduledEndDateTime[i]
+        eventObj.userId = req.user.id
         tempArr.push(eventObj)
       }
     } else {
+      req.body.userId = req.user.id
       tempArr.push(req.body)
     }
-
-    tempArr.forEach((e) => {
-      return Task
-      .create({
-        title: e.title.toLowerCase(),
-        scheduledStartDateTime: e.scheduledStartDateTime,
-        scheduledEndDateTime: e.scheduledEndDateTime,
-        userId: req.user.id
-      })
+    return Task
+      .bulkCreate(tempArr)
+      // .then((task)=>res.send(task))
       .then(task => res.redirect('/task'))
       .catch(error => res.status(400).send(error))
-    })
   },
   findWord (req, res) {
     // console.log(req.body.keyword)

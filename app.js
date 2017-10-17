@@ -7,7 +7,7 @@ const session = require('express-session')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const Handlebars = require('handlebars')
-const flash = require('connect-flash')
+// const flash = require('connect-flash')
 
 // const methodOverride = require('method-override')
 
@@ -25,7 +25,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 Handlebars.registerHelper('moment', require('helper-moment'))
-app.use(require('cookie-parser')())
+// app.use(require('cookie-parser')())
 app.use(express.static('public'))
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'

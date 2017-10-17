@@ -1,13 +1,12 @@
 const tempTaskForm = require('../models').tempTaskForm
 const Task = require('../models').Task
 const chrono = require('chrono-node')
+const notifier = require('node-notifier')
 
 let parsedForm
-let resultsArr = []
 
 module.exports = {
   tempFormGet (req, res) {
-    console.log('getting form')
     return tempTaskForm
   .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'],
     where: { userId: req.user.id }
@@ -18,6 +17,7 @@ module.exports = {
 
   tempFormPost (req, res, next) {
     // destroys all previous forms
+    let resultsArr = []
     return tempTaskForm
       .destroy({
         where: {userId: req.user.id}
@@ -79,7 +79,6 @@ module.exports = {
               }
             })
               .then(clashTask => {
-                console.log(clashTask)
                 // next()
                 // res.send(clashTask)
                 res.render('task/formModal', {clashTask: clashTask, singleData: parsedForm})
@@ -194,24 +193,24 @@ module.exports = {
       }
       if (results[0] && extract(userInput, results[0].text)) {
         let start = () => {
-          return results[0] ? results[0].start.date() : console.log('pls input valid start time')
+          return results[0] ? results[0].start.date() : ''
         }
         let end = () => {
           return results[0].end ? results[0].end.date() : results[0].start.date()
         }
         let title = () => {
-          return extract(userInput, results[0].text) ? extract(userInput, results[0].text) : console.log('pls input valid task / venue')
+          return extract(userInput, results[0].text) ? extract(userInput, results[0].text) : ''
         }
         formFilled = {
           scheduledStartDateTime: start(),
           scheduledEndDateTime: end(),
-          title: title()
+          title: title().toLowerCase()
         }
         return formFilled
       } else if (!results[0]) {
-        console.log('pls input valid start and end times')
+        notifier.notify('pls input valid start and end times')
       } else if (!extract(userInput, results[0].text)) {
-        console.log('pls input valid task / venue')
+        notifier.notify('pls input valid task / venue')
       } else {
         formFilled = ''
       }

@@ -35,7 +35,8 @@ module.exports = {
           model: 'Users',
           key: 'id',
           as: 'userId'
-        }
+        },
+        allowNull: false
       }
     })
   },
