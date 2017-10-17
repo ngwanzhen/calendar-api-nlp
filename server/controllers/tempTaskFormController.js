@@ -73,7 +73,6 @@ module.exports = {
       // checks for clashes to be displayed if singular event. recurring event is assumed to be created regardless
       .then(() => {
         if (parsedForm) {
-          console.log(`parsedForm ${parsedForm}`)
           return Task
             .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'],
               where: {
@@ -135,19 +134,6 @@ module.exports = {
 
       // for yearly events
       if (userInput.toLowerCase().split(' ').includes('anniversary') || userInput.toLowerCase().split(' ').includes('birthday')) {
-        // let original = nlpInput(userInput)
-        // let dstart = original.scheduledStartDateTime
-        // let yearStart = dstart.getFullYear()
-        // let monthStart = dstart.getMonth()
-        // let dayStart = dstart.getDate()
-        // let hourStart = dstart.getHours()
-        // let minuteStart = dstart.getMinutes()
-        // let dend = original.scheduledEndDateTime
-        // let yearEnd = dend.getFullYear()
-        // let monthEnd = dend.getMonth()
-        // let dayEnd = dend.getDate()
-        // let hourEnd = dend.getHours()
-        // let minuteEnd = dend.getMinutes()
 
         for (let i = 0; i < 101; i++) {
           let temp = {}
@@ -158,19 +144,6 @@ module.exports = {
         }
         // for monthly events
       } else if (userInput.toLowerCase().split(' ').includes('every') && userInput.toLowerCase().split(' ').includes('month')) {
-        // let original = nlpInput(userInput)
-        // let dstart = original.scheduledStartDateTime
-        // let yearStart = dstart.getFullYear()
-        // let monthStart = dstart.getMonth()
-        // let dayStart = dstart.getDate()
-        // let hourStart = dstart.getHours()
-        // let minuteStart = dstart.getMinutes()
-        // let dend = original.scheduledEndDateTime
-        // let yearEnd = dend.getFullYear()
-        // let monthEnd = dend.getMonth()
-        // let dayEnd = dend.getDate()
-        // let hourEnd = dend.getHours()
-        // let minuteEnd = dend.getMinutes()
 
         for (let i = 0; i < 13; i++) {
           let temp = {}
@@ -182,19 +155,6 @@ module.exports = {
         // for weekly events
       } else if (userInput.toLowerCase().split(' ').includes('every') && userInput.toLowerCase().split(' ').includes('week')) {
         let original = nlpInput(userInput)
-        console.log(original)
-        // let dstart = original.scheduledStartDateTime
-        // let yearStart = dstart.getFullYear()
-        // let monthStart = dstart.getMonth()
-        // let dayStart = dstart.getDate()
-        // let hourStart = dstart.getHours()
-        // let minuteStart = dstart.getMinutes()
-        // let dend = original.scheduledEndDateTime
-        // let yearEnd = dend.getFullYear()
-        // let monthEnd = dend.getMonth()
-        // let dayEnd = dend.getDate()
-        // let hourEnd = dend.getHours()
-        // let minuteEnd = dend.getMinutes()
 
         for (let i = 0; i < 54; i++) {
           let temp = {}
@@ -205,19 +165,6 @@ module.exports = {
         }
         // for daily events
       } else if (userInput.toLowerCase().split(' ').includes('every') && userInput.toLowerCase().split(' ').includes('day')) {
-        // let original = nlpInput(userInput)
-        // let dstart = original.scheduledStartDateTime
-        // let yearStart = dstart.getFullYear()
-        // let monthStart = dstart.getMonth()
-        // let dayStart = dstart.getDate()
-        // let hourStart = dstart.getHours()
-        // let minuteStart = dstart.getMinutes()
-        // let dend = original.scheduledEndDateTime
-        // let yearEnd = dend.getFullYear()
-        // let monthEnd = dend.getMonth()
-        // let dayEnd = dend.getDate()
-        // let hourEnd = dend.getHours()
-        // let minuteEnd = dend.getMinutes()
 
         for (let i = 0; i < 31; i++) {
           let temp = {}

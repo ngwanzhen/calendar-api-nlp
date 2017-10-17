@@ -61,9 +61,7 @@ https://github.com/smalot/bootstrap-datetimepicker
 * added routes for past due events (facilitate reminder function)
 
 ### Unsolved-challenges /  Todos
-* recurring test cases to fix
 * to recognise 'for 20mins'
-* sequential
 * fix bug where 2 to 4am defaults to 14:00 to 4:00 coz of AM PM defaulting
 * cleaning up keywords to remove verbs like go using 'compromise' package
 https://github.com/nlp-compromise/compromise
