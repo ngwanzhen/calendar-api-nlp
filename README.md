@@ -58,7 +58,7 @@ https://github.com/smalot/bootstrap-datetimepicker
 
 ### Front end implementation considerations
 * added routes for task/day (list all tasks for today) and task/month (list all tasks this month) to help front-end create calendar view accordingly
-* added routes for past due events (facilitate reminder function)
+* added routes for upcoming events starting in < 15mins (facilitate reminder function)
 
 ### Unsolved-challenges /  Todos
 * to recognise 'for 20mins'
