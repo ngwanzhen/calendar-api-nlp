@@ -4,6 +4,6 @@ const tempTaskForm = require('./tempTaskFormController')
 
 module.exports = {
   task,
-  tempTaskForm,
+  tempTaskForm
   // user
 }

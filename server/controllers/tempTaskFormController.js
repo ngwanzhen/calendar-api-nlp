@@ -106,7 +106,8 @@ module.exports = {
               .then(clashTask => {
                 // next()
                 // res.send(sequentialForm)
-                res.render('task/formModal', {clashTask: clashTask, singleData: parsedForm,
+                res.render('task/formModal', {clashTask: clashTask,
+                  singleData: parsedForm,
                   sequentialData: sequentialArr})
               })
               .catch(error => res.status(400).send(error))
@@ -134,7 +135,6 @@ module.exports = {
 
       // for yearly events
       if (userInput.toLowerCase().split(' ').includes('anniversary') || userInput.toLowerCase().split(' ').includes('birthday')) {
-
         for (let i = 0; i < 101; i++) {
           let temp = {}
           temp.scheduledStartDateTime = new Date(yearStart + i, monthStart, dayStart, hourStart, minuteStart)
@@ -144,7 +144,6 @@ module.exports = {
         }
         // for monthly events
       } else if (userInput.toLowerCase().split(' ').includes('every') && userInput.toLowerCase().split(' ').includes('month')) {
-
         for (let i = 0; i < 13; i++) {
           let temp = {}
           temp.scheduledStartDateTime = new Date(yearStart, monthStart + i, dayStart, hourStart, minuteStart)
@@ -165,11 +164,10 @@ module.exports = {
         }
         // for daily events
       } else if (userInput.toLowerCase().split(' ').includes('every') && userInput.toLowerCase().split(' ').includes('day')) {
-
         for (let i = 0; i < 31; i++) {
           let temp = {}
           temp.scheduledStartDateTime = new Date(yearStart, monthStart, dayStart + i, hourStart, minuteStart)
-          temp.scheduledEndDateTime = new Date(yearEnd + i, monthEnd, dayEnd + i, hourEnd, minuteStart)
+          temp.scheduledEndDateTime = new Date(yearEnd, monthEnd, dayEnd + i, hourEnd, minuteStart)
           temp.title = original.title
           resultsArr.push(temp)
         }

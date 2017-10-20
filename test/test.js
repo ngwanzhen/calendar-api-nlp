@@ -118,8 +118,8 @@ function nlpInput (e, userInput) {
         return results[0].end ? results[0].end.date() : results[0].start.date()
       }
       let title = () => {
-        return extract(userInput, results[0].text) ? extract(userInput, results[0].text) :
-          console.log('pls input valid task / venue')
+        return extract(userInput, results[0].text) ? extract(userInput, results[0].text)
+          : console.log('pls input valid task / venue')
       }
 
       formFilled = {

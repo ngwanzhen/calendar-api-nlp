@@ -5,7 +5,11 @@ module.exports = {
   // find all tasks
   list (req, res) {
     return Task
-    .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'], order: [['scheduledStartDateTime', 'DESC']],
+    .findAll({ attributes:
+    ['title',
+      'scheduledStartDateTime',
+      'scheduledEndDateTime'],
+      order: [['scheduledStartDateTime', 'DESC']],
       where: { userId: req.user.id }
     })
     .then(task => res.render('task/list', {data: task}))
@@ -14,9 +18,14 @@ module.exports = {
   // find task for today
   day (req, res) {
     return Task
-    .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'], order: [['scheduledStartDateTime', 'DESC']],
-      where: { userId: req.user.id, scheduledStartDateTime: {
-        $lte: new Date().setHours(24, 0, 0, 0)},
+    .findAll({ attributes:
+    ['title',
+      'scheduledStartDateTime',
+      'scheduledEndDateTime'],
+      order: [['scheduledStartDateTime', 'DESC']],
+      where: { userId: req.user.id,
+        scheduledStartDateTime: {
+          $lte: new Date().setHours(24, 0, 0, 0)},
         scheduledEndDateTime: {
           $gte: new Date().setHours(0, 0, 0, 0) }
       }
@@ -31,9 +40,14 @@ module.exports = {
     let lastDay = new Date(y, m + 1, 0)
 
     return Task
-    .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'], order: [['scheduledStartDateTime', 'DESC']],
-      where: { userId: req.user.id, scheduledStartDateTime: {
-        $lt: lastDay },
+    .findAll({ attributes:
+    ['title',
+      'scheduledStartDateTime',
+      'scheduledEndDateTime'],
+      order: [['scheduledStartDateTime', 'DESC']],
+      where: { userId: req.user.id,
+        scheduledStartDateTime: {
+          $lt: lastDay },
         scheduledEndDateTime: {
           $gte: firstDay }
       }
@@ -44,13 +58,16 @@ module.exports = {
   // find task starting in 15 mins
   remind (req, res) {
     return Task
-    .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'], order: [['scheduledStartDateTime', 'DESC']],
-      where: { userId: req.user.id, scheduledStartDateTime: {
-        $lte: new Date().getTime() + (15 * 60 * 1000) },
+    .findAll({ attributes: ['title', 'scheduledStartDateTime', 'scheduledEndDateTime'],
+      order: [['scheduledStartDateTime', 'DESC']],
+      where: { userId: req.user.id,
+        scheduledStartDateTime: {
+          $lte: new Date().getTime() + (15 * 60 * 1000) },
         scheduledEndDateTime: {
           $gte: new Date().getTime() }
       }
     })
+    // .then(task => res.send(task))
     .then(task => res.render('task/list', {data: task}))
     .catch(error => res.status(400).send(error))
   },

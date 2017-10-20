@@ -12,7 +12,7 @@ const Handlebars = require('handlebars')
 // const methodOverride = require('method-override')
 
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }))
 app.use(bodyParser.json())
 
