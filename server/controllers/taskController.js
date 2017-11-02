@@ -12,7 +12,8 @@ module.exports = {
       order: [['scheduledStartDateTime', 'DESC']],
       where: { userId: req.user.id }
     })
-    .then(task => res.render('task/list', {data: task}))
+    // .then(task => res.render('task/list', {data: task}))
+    .then(task => res.send(task))
     .catch(error => res.status(400).send(error))
   },
   // find task for today
