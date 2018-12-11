@@ -3,12 +3,14 @@
 const User = require('../models').User
 const bcrypt = require('bcrypt')
 
-module.exports = function (passport, user) {
+module.exports = function (passport) {
   // var User = user
-  var LocalStrategy = require('passport-local').Strategy
+  const LocalStrategy = require('passport-local').Strategy
+  const passportJWT = require("passport-jwt");
+  const JWTStrategy = passportJWT.Strategy;
+  const ExtractJWT = passportJWT.ExtractJwt;
 
   passport.use('local-signup', new LocalStrategy(
-
     {
       usernameField: 'username',
       passwordField: 'password',
@@ -29,20 +31,15 @@ module.exports = function (passport, user) {
           })
         } else {
           var userPassword = generateHash(password)
-
           var data =
-
-            {
-              username: username,
-              password: userPassword
-
-            }
-
+          {
+            username: username,
+            password: userPassword
+          }
           User.create(data).then(function (newUser, created) {
             if (!newUser) {
               return done(null, false)
             }
-
             if (newUser) {
               return done(null, newUser)
             }
@@ -50,11 +47,12 @@ module.exports = function (passport, user) {
         }
       })
     }
+  ))
 
-    ))
   passport.serializeUser(function (user, done) {
     done(null, user.id)
   })
+
   passport.deserializeUser(function (id, done) {
     User.findById(id).then(function (user) {
       if (user) {
@@ -66,26 +64,17 @@ module.exports = function (passport, user) {
   })
 
   passport.use('local-signin', new LocalStrategy(
-
     {
-
-        // by default, local strategy uses username and password, we will override with email
-
+      // by default, local strategy uses username and password, we will override with email
       usernameField: 'username',
-
       passwordField: 'password',
-
       passReqToCallback: true // allows us to pass back the entire request to the callback
-
     },
-
     function (req, username, password, done) {
-        // var User = user;
-
+      // var User = user;
       var isValidPassword = function (userpass, password) {
         return bcrypt.compareSync(password, userpass)
       }
-
       User.findOne({
         where: {
           username: username
@@ -113,8 +102,35 @@ module.exports = function (passport, user) {
         })
       })
     }
+  ))
 
-))
+  var cookieExtractor = function (req) {
+    var token = null;
+    if (req && req.headers.cookie) {
+      token = req.headers.cookie.split('jwt=')[1];
+    }
+    console.log('token', token)
+    return token;
+  };
+
+  passport.use(new JWTStrategy({
+    jwtFromRequest: cookieExtractor,
+    secretOrKey: 'your_jwt_secret'
+  },
+    function (jwtPayload, done) {
+      console.log('jwtPayload', jwtPayload)
+      //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
+      // return User.findById(jwtPayload.id)
+      // .then(user => {
+      // console.log('user', user)
+      return done(null, jwtPayload);
+      // })
+      // .catch(err => {
+      //   return cb(err);
+      // });
+    }
+  ));
+
 }
 
 // const Sequelize = require('sequelize')

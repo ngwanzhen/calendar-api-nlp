@@ -1,0 +1,279 @@
+{
+  "info": {
+    "version": "0.0.0",
+    "title": "NLP Task Management API Documentation"
+  },
+  "swagger": "2.0",
+  "paths": {
+    "/tasks/form": {
+      "post": {
+        "description": "Post to tempForm. Return response with parsed task with title, start time, end time and clashedTask (optional).\n",
+        "parameters": [
+          {
+            "name": "jwt",
+            "in": "cookie",
+            "required": true,
+            "type": "string",
+            "description": "signed user token saved in cookie that would decrypt to user id"
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "only 4200 allowed for now"
+          },
+          {
+            "name": "nlp",
+            "in": "body",
+            "description": "The temp tasks to create. Provide timing, date and description in single string to be parsed.",
+            "schema": {
+              "type": "object",
+              "required": [
+                "nlp",
+                "sequentialTasks"
+              ],
+              "properties": {
+                "nlp": {
+                  "type": "string"
+                },
+                "sequentialTasks": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response could be singleData, sequentialData or recurringData with clashedTask (could be empty object)",
+            "examples": {
+              "application/json": "{\n    \"clashedTask\":\n      {\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n      },\n    \"singleData\":\n      {\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n      },\n    \"sequentialData\":\n     [\n      {\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n      },\n      {\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n      }\n    ],\n    \"recurringData\":\n     [\n      {\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n      },\n      {\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n      }\n    ]\n  }\n"
+            }
+          },
+          "400": {
+            "description": "User input does not include valid start and end times.",
+            "examples": {
+              "application/json": "{\n  \"code\": \"INVALID_DATETIME\",\n  \"message\": \"pls input valid start and end times\"\n}\n"
+            }
+          }
+        }
+      }
+    },
+    "/tasks/add": {
+      "post": {
+        "description": "Post to Task model. Returns array of tasks created if successful.\n",
+        "parameters": [
+          {
+            "name": "jwt",
+            "in": "cookie",
+            "required": true,
+            "type": "string",
+            "description": "signed user token saved in cookie that would decrypt to user id"
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "only 4200 allowed for now"
+          },
+          {
+            "name": "nlp",
+            "in": "body",
+            "description": "Array of tasks to create. Or single object of task to create.",
+            "schema": {
+              "type": "object",
+              "required": [
+                "title",
+                "scheduledStartDateTime",
+                "scheduledEndDateTime"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "scheduledStartDateTime": {
+                  "type": "string"
+                },
+                "scheduledEndDateTime": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "examples": {
+              "application/json": "[{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n },\n{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n },\n{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n }]\n"
+            }
+          },
+          "400": {
+            "description": "Error with database",
+            "examples": {
+              "application/json": "{\n\n}\n"
+            }
+          }
+        }
+      }
+    },
+    "/tasks/keyword": {
+      "post": {
+        "description": "Searches Task model title for matching keywords. Returns array / single task.\n",
+        "parameters": [
+          {
+            "name": "jwt",
+            "in": "cookie",
+            "required": true,
+            "type": "string",
+            "description": "signed user token saved in cookie that would decrypt to user id"
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "only 4200 allowed for now"
+          },
+          {
+            "name": "keyword",
+            "in": "body",
+            "description": "String of keyword to search for.",
+            "schema": {
+              "type": "string",
+              "required": [
+                "keyword"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "examples": {
+              "application/json": "[{\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n },\n{\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n },\n{\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n }]\n"
+            }
+          },
+          "400": {
+            "description": "Error with database",
+            "examples": {
+              "application/json": "{\n\n}\n"
+            }
+          }
+        }
+      }
+    },
+    "/tasks/day": {
+      "get": {
+        "description": "Gets a listing of all tasks in Task model for today. Returns array of tasks.\n",
+        "parameters": [
+          {
+            "name": "jwt",
+            "in": "cookie",
+            "required": true,
+            "type": "string",
+            "description": "signed user token saved in cookie that would decrypt to user id"
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "only 4200 allowed for now"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "examples": {
+              "application/json": "[{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n },\n{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n },\n{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n }]\n"
+            }
+          },
+          "400": {
+            "description": "Error with database",
+            "examples": {
+              "application/json": "{\n\n}\n"
+            }
+          }
+        }
+      }
+    },
+    "/tasks/list": {
+      "get": {
+        "description": "Gets a listing of all tasks in Task model by user id. Returns array of tasks.\n",
+        "parameters": [
+          {
+            "name": "jwt",
+            "in": "cookie",
+            "required": true,
+            "type": "string",
+            "description": "signed user token saved in cookie that would decrypt to user id"
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "only 4200 allowed for now"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "examples": {
+              "application/json": "[{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n },\n{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n },\n{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n }]\n"
+            }
+          },
+          "400": {
+            "description": "Error with database",
+            "examples": {
+              "application/json": "{\n\n}\n"
+            }
+          }
+        }
+      }
+    },
+    "/tasks/remind": {
+      "get": {
+        "description": "Gets a listing of all tasks in Task model in the next 15 minutes. Returns array of tasks.\n",
+        "parameters": [
+          {
+            "name": "jwt",
+            "in": "cookie",
+            "required": true,
+            "type": "string",
+            "description": "signed user token saved in cookie that would decrypt to user id"
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "only 4200 allowed for now"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "examples": {
+              "application/json": "[{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n },\n{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n },\n{\n        \"id\": \"swimming\",\n        \"title\": \"swimming\",\n        \"scheduledStartDateTime\": \"\",\n        \"scheduledEndDateTime\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"userId\": \"\",\n }]\n"
+            }
+          },
+          "400": {
+            "description": "Error with database",
+            "examples": {
+              "application/json": "{\n\n}\n"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {},
+  "tags": []
+}

@@ -1,11 +1,26 @@
 ### Task Management App
+## Key Features
+User authentication using jwt cookie that would decrypt to user id
+Natural langauge processing for schedule management
+Database using postgres and sequelize
+
+deployed api:
+documentation: 
+demo with front-end: (default user )
 
 ### User Stories
+Auth
+* user able to signup / login to see his own tasks by day, week, month
+
+Add Tasks with NLP
 * able to add task and time in a single string input such as 'swimming next Friday at 2pm', 'Nov 15, 2017, Harry’s   birthday'
-* able to search / filter for relevant tasks by time and keywords
-* user able to signup / login to see his own tasks
-* user able to check for clashes in timing before proceeding to book a slot
+* able to check for clashes in timing before proceeding to book a slot
 * able to add recurring schedule using the words 'birthday' or 'anniversary' or 'every day / month / week'
+* able to 'guess' am / pm from morning / evening / best guess based on hour
+
+View Tasks
+* able to search / filter for relevant tasks by time and keywords
+* user will get reminded of task coming up in 15 mins
 
 ### Assumptions
 * Upon clashes, users will be shown clashing schedule, but still allowed to proceed with booking

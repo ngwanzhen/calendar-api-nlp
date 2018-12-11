@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="main.css">
+    <meta charset="UTF-8">
+    <title>NLP Task Management API Documentation</title>
+                                                         </head>
+<body>
+<div class="container">
+    <h1>NLP Task Management API Documentation</h1>
+    <p class="sw-info">
+        
+        Version: <span class="sw-info-version">0.0.0</span>
+    </p>
+    <p></p>
+    
+    
+    <div id="sw-schemes" class="sw-default-value">
+        <span class="sw-default-value-header">Schemes:</span>
+        
+    </div>
+    
+        <h2 id="swagger--summary-no-tags">Summary</h2>
+        <table class="table table-bordered table-condensed swagger--summary">
+            <thead>
+            <tr>
+                <th>Path</th>
+                <th>Operation</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                            <td class="swagger--summary-path" rowspan="1">
+                                <a href="#path--tasks-add">/tasks/add</a>
+                            </td>
+                        <td>
+                            <a href="#operation--tasks-add-post">POST</a>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                            <td class="swagger--summary-path" rowspan="1">
+                                <a href="#path--tasks-day">/tasks/day</a>
+                            </td>
+                        <td>
+                            <a href="#operation--tasks-day-get">GET</a>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                            <td class="swagger--summary-path" rowspan="1">
+                                <a href="#path--tasks-form">/tasks/form</a>
+                            </td>
+                        <td>
+                            <a href="#operation--tasks-form-post">POST</a>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                            <td class="swagger--summary-path" rowspan="1">
+                                <a href="#path--tasks-keyword">/tasks/keyword</a>
+                            </td>
+                        <td>
+                            <a href="#operation--tasks-keyword-post">POST</a>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                            <td class="swagger--summary-path" rowspan="1">
+                                <a href="#path--tasks-list">/tasks/list</a>
+                            </td>
+                        <td>
+                            <a href="#operation--tasks-list-get">GET</a>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                            <td class="swagger--summary-path" rowspan="1">
+                                <a href="#path--tasks-remind">/tasks/remind</a>
+                            </td>
+                        <td>
+                            <a href="#operation--tasks-remind-get">GET</a>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+    
+    
+        <h2>Security</h2>
+    
+    
+    <h2>Paths</h2>
+    
+        
+        <span id="path--tasks-add"></span>
+            <div id="operation--tasks-add-post" class="swagger--panel-operation-post panel">
+                <div class="panel-heading">
+                    <div class="operation-summary"></div>
+                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/tasks/add</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>Post to Task model. Returns array of tasks created if successful.</p>
+            
+                    </section>
+            
+                        
+                            <section class="sw-request-body">
+                                
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><p>Array of tasks to create. Or single object of task to create.</p>
+                        </p>
+                                            </div>
+                                            <div class="col-md-6 sw-request-model">
+                            <div  class="panel panel-definition">
+                                <div class="panel-body">
+                                        
+                                                <section class="json-schema-properties">
+                                                    <dl>
+                                                            <dt data-property-name="title">
+                                                                <span class="json-property-name">title:</span>
+                                                                
+                                                                <span class="json-property-type">string</span>
+                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                
+                                                                    <span class="json-property-required"></span>
+                                                            </dt>
+                                                            <dd>
+                                                                
+                                                                <div class="json-inner-schema">
+                                                                    
+                                                                </div>
+                                                            </dd>
+                                                            <dt data-property-name="scheduledStartDateTime">
+                                                                <span class="json-property-name">scheduledStartDateTime:</span>
+                                                                
+                                                                <span class="json-property-type">string</span>
+                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                
+                                                                    <span class="json-property-required"></span>
+                                                            </dt>
+                                                            <dd>
+                                                                
+                                                                <div class="json-inner-schema">
+                                                                    
+                                                                </div>
+                                                            </dd>
+                                                            <dt data-property-name="scheduledEndDateTime">
+                                                                <span class="json-property-name">scheduledEndDateTime:</span>
+                                                                
+                                                                <span class="json-property-type">string</span>
+                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                
+                                                                    <span class="json-property-required"></span>
+                                                            </dt>
+                                                            <dd>
+                                                                
+                                                                <div class="json-inner-schema">
+                                                                    
+                                                                </div>
+                                                            </dd>
+                                                    </dl>
+                                                </section>
+                                </div>
+                            </div></div>
+                                        </div>
+                            </section>        
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                jwt
+                                            </td>
+                                            <td><p>signed user token saved in cookie that would decrypt to user id</p>
+                                        </td>
+                                            <td>cookie</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Origin
+                                            </td>
+                                            <td><p>only 4200 allowed for now</p>
+                                        </td>
+                                            <td>header</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Successful response</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre>[{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> },<br>{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> },<br>{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> }]<br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-400">
+                                        400 Bad Request
+                                    
+                                    </dt>
+                                    <dd class="sw-response-400">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Error with database</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre><span class="hljs-collection">{<br><br>}</span><br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>
+        
+        <span id="path--tasks-day"></span>
+            <div id="operation--tasks-day-get" class="swagger--panel-operation-get panel">
+                <div class="panel-heading">
+                    <div class="operation-summary"></div>
+                    <h3 class="panel-title"><span class="operation-name">GET</span> <strong>/tasks/day</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>Gets a listing of all tasks in Task model for today. Returns array of tasks.</p>
+            
+                    </section>
+            
+                    
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                jwt
+                                            </td>
+                                            <td><p>signed user token saved in cookie that would decrypt to user id</p>
+                                        </td>
+                                            <td>cookie</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Origin
+                                            </td>
+                                            <td><p>only 4200 allowed for now</p>
+                                        </td>
+                                            <td>header</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Successful response</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre>[{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> },<br>{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> },<br>{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> }]<br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-400">
+                                        400 Bad Request
+                                    
+                                    </dt>
+                                    <dd class="sw-response-400">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Error with database</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre><span class="hljs-collection">{<br><br>}</span><br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>
+        
+        <span id="path--tasks-form"></span>
+            <div id="operation--tasks-form-post" class="swagger--panel-operation-post panel">
+                <div class="panel-heading">
+                    <div class="operation-summary"></div>
+                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/tasks/form</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>Post to tempForm. Return response with parsed task with title, start time, end time and clashedTask (optional).</p>
+            
+                    </section>
+            
+                        
+                            <section class="sw-request-body">
+                                
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><p>The temp tasks to create. Provide timing, date and description in single string to be parsed.</p>
+                        </p>
+                                            </div>
+                                            <div class="col-md-6 sw-request-model">
+                            <div  class="panel panel-definition">
+                                <div class="panel-body">
+                                        
+                                                <section class="json-schema-properties">
+                                                    <dl>
+                                                            <dt data-property-name="nlp">
+                                                                <span class="json-property-name">nlp:</span>
+                                                                
+                                                                <span class="json-property-type">string</span>
+                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                
+                                                                    <span class="json-property-required"></span>
+                                                            </dt>
+                                                            <dd>
+                                                                
+                                                                <div class="json-inner-schema">
+                                                                    
+                                                                </div>
+                                                            </dd>
+                                                            <dt data-property-name="sequentialTasks">
+                                                                <span class="json-property-name">sequentialTasks:</span>
+                                                                
+                                                                <span class="json-property-type">object[]</span>
+                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                
+                                                                    <span class="json-property-required"></span>
+                                                            </dt>
+                                                            <dd>
+                                                                
+                                                                <div class="json-inner-schema">
+                                                                    
+                                                                </div>
+                                                            </dd>
+                                                    </dl>
+                                                </section>
+                                </div>
+                            </div></div>
+                                        </div>
+                            </section>        
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                jwt
+                                            </td>
+                                            <td><p>signed user token saved in cookie that would decrypt to user id</p>
+                                        </td>
+                                            <td>cookie</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Origin
+                                            </td>
+                                            <td><p>only 4200 allowed for now</p>
+                                        </td>
+                                            <td>header</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Successful response could be singleData, sequentialData or recurringData with clashedTask (could be empty object)</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre>{<br>    "<span class="hljs-attribute">clashedTask</span>":<br>      <span class="hljs-value">{<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>      }</span>,<br>    "<span class="hljs-attribute">singleData</span>":<br>      <span class="hljs-value">{<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>      }</span>,<br>    "<span class="hljs-attribute">sequentialData</span>":<br>     <span class="hljs-value">[<br>      {<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>      },<br>      {<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>      }<br>    ]</span>,<br>    "<span class="hljs-attribute">recurringData</span>":<br>     <span class="hljs-value">[<br>      {<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>      },<br>      {<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>      }<br>    ]<br>  </span>}<br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-400">
+                                        400 Bad Request
+                                    
+                                    </dt>
+                                    <dd class="sw-response-400">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>User input does not include valid start and end times.</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre>{<br>  "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"INVALID_DATETIME"</span></span>,<br>  "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"pls input valid start and end times"</span><br></span>}<br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>
+        
+        <span id="path--tasks-keyword"></span>
+            <div id="operation--tasks-keyword-post" class="swagger--panel-operation-post panel">
+                <div class="panel-heading">
+                    <div class="operation-summary"></div>
+                    <h3 class="panel-title"><span class="operation-name">POST</span> <strong>/tasks/keyword</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>Searches Task model title for matching keywords. Returns array / single task.</p>
+            
+                    </section>
+            
+                        
+                            <section class="sw-request-body">
+                                
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><p>String of keyword to search for.</p>
+                        </p>
+                                            </div>
+                                            <div class="col-md-6 sw-request-model">
+                            <div  class="panel panel-definition">
+                                <div class="panel-body">
+                                        
+                                </div>
+                            </div></div>
+                                        </div>
+                            </section>        
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                jwt
+                                            </td>
+                                            <td><p>signed user token saved in cookie that would decrypt to user id</p>
+                                        </td>
+                                            <td>cookie</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Origin
+                                            </td>
+                                            <td><p>only 4200 allowed for now</p>
+                                        </td>
+                                            <td>header</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Successful response</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre>[{<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> },<br>{<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> },<br>{<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> }]<br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-400">
+                                        400 Bad Request
+                                    
+                                    </dt>
+                                    <dd class="sw-response-400">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Error with database</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre><span class="hljs-collection">{<br><br>}</span><br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>
+        
+        <span id="path--tasks-list"></span>
+            <div id="operation--tasks-list-get" class="swagger--panel-operation-get panel">
+                <div class="panel-heading">
+                    <div class="operation-summary"></div>
+                    <h3 class="panel-title"><span class="operation-name">GET</span> <strong>/tasks/list</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>Gets a listing of all tasks in Task model by user id. Returns array of tasks.</p>
+            
+                    </section>
+            
+                    
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                jwt
+                                            </td>
+                                            <td><p>signed user token saved in cookie that would decrypt to user id</p>
+                                        </td>
+                                            <td>cookie</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Origin
+                                            </td>
+                                            <td><p>only 4200 allowed for now</p>
+                                        </td>
+                                            <td>header</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Successful response</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre>[{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> },<br>{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> },<br>{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> }]<br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-400">
+                                        400 Bad Request
+                                    
+                                    </dt>
+                                    <dd class="sw-response-400">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Error with database</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre><span class="hljs-collection">{<br><br>}</span><br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>
+        
+        <span id="path--tasks-remind"></span>
+            <div id="operation--tasks-remind-get" class="swagger--panel-operation-get panel">
+                <div class="panel-heading">
+                    <div class="operation-summary"></div>
+                    <h3 class="panel-title"><span class="operation-name">GET</span> <strong>/tasks/remind</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <section class="sw-operation-description">
+                        <p>Gets a listing of all tasks in Task model in the next 15 minutes. Returns array of tasks.</p>
+            
+                    </section>
+            
+                    
+                        <section class="sw-request-params">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="sw-param-name"></th>
+                                    <th class="sw-param-description"></th>
+                                    <th class="sw-param-type"></th>
+                                    <th class="sw-param-data-type"></th>
+                                    <th class="sw-param-annotation"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                                jwt
+                                            </td>
+                                            <td><p>signed user token saved in cookie that would decrypt to user id</p>
+                                        </td>
+                                            <td>cookie</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Origin
+                                            </td>
+                                            <td><p>only 4200 allowed for now</p>
+                                        </td>
+                                            <td>header</td>
+                                            <td>
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            </td>
+                                            <td>
+                                                    <span class="json-property-required"></span>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    
+                        <section class="sw-responses">
+                    
+                            <dl>
+                                    <dt class="sw-response-200">
+                                        200 OK
+                                    
+                                    </dt>
+                                    <dd class="sw-response-200">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Successful response</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre>[{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> },<br>{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> },<br>{<br>        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"swimming"</span></span>,<br>        "<span class="hljs-attribute">scheduledStartDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">scheduledEndDateTime</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">createdAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">updatedAt</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br>        "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,<br> }]<br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                                    <dt class="sw-response-400">
+                                        400 Bad Request
+                                    
+                                    </dt>
+                                    <dd class="sw-response-400">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>Error with database</p>
+                                            
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-6 sw-response-examples">
+                                                        <div class="label label-default">Example for application/json</div>
+                                                        <pre><span class="hljs-collection">{<br><br>}</span><br></pre>
+                                                    </div>
+                                                
+                                                <div class="col-md-6 sw-response-model">
+                                            </div>
+                                            
+                                            </div>                </dd>
+                            </dl>
+                        </section>
+                </div>
+            </div>
+    
+        <h2>Parameter definitions</h2>
+        <table id="table-parameter-definitions" class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-key"></th>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+                <th class="sw-param-annotation"></th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+     
+    <h2>Response definitions</h2>
+    
+    <dl id="sw-response-definitions">
+    </dl>
+    
+                       
+        <h2>Schema definitions</h2>
+    
+    
+</div>
+<script src="bundle.js" type="application/javascript"></script>
+</body>
+</html>
