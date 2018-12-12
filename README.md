@@ -8,6 +8,9 @@ deployed api:
 documentation: 
 demo with front-end: (default user )
 
+## Deployment:
+process.env.NODE_ENV=production
+
 ### User Stories
 Auth
 * user able to signup / login to see his own tasks by day, week, month
