@@ -8,19 +8,19 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "ngwanzhen",
+    "username": "zvgpblhickpcip",
+    "password": "9748c70766cfa710eccacaf69e4e66d610fe83b6b7c7df86a34d4be6e96eb873",
+    "database": "d3bmbrn44alqgd",
+    "host": "ec2-184-72-239-186.compute-1.amazonaws.com",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "wz",
     "password": null,
     "database": "task",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"
-  },
-    "test": {
-      "username": "wz",
-      "password": null,
-      "database": "task",
-      "host": "127.0.0.1",
-      "port": 5432,
-      "dialect": "postgres"
-    }
   }
+}
