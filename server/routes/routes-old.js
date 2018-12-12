@@ -1,6 +1,6 @@
 const taskController = require('../controllers/controller').task
 const tempTaskFormController = require('../controllers/controller').tempTaskForm
-const userController = require('../controllers/authcontroller.js')
+const userController = require('../controllers/authController.js')
 // const userController = require('../controllers/controller').user
 const passport = require('passport')
 const jwt = require('jsonwebtoken');

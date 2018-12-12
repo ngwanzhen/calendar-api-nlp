@@ -3,7 +3,7 @@ const router = express.Router();
 
 const taskController = require('../controllers/controller').task
 const tempTaskFormController = require('../controllers/controller').tempTaskForm
-const userController = require('../controllers/authcontroller.js')
+const userController = require('../controllers/authController.js')
 
 // basic routes
 router.get('/', taskController.list)

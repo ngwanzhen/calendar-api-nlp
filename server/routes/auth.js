@@ -3,7 +3,7 @@ const router = express.Router();
 
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const userController = require('../controllers/authcontroller.js')
+const userController = require('../controllers/authController.js')
 
   /**
    * @swagger
