@@ -32,7 +32,7 @@
     "sequelize-cli": "^3.0.0"
   },
   "scripts": {
-    "start": "node app",
+    "start": "nodemon app",
     "test": "mocha test/test",
     "docs": "swagger-jsdoc -d ./docs/swagger.js -o ./docs/output.json ./server/routes/tasks.js && bootprint openapi ./docs/output.json ./docs/dist"
   },

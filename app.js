@@ -57,7 +57,7 @@ app.use('/userAuth', authRoutes);
 app.use('/task', passport.authenticate('jwt', {session: false}), taskRoutes);
 
 const server = app.listen(process.env.PORT || 3000)
-console.log('Server UP at localhost:3000')
+console.log(`Server UP at ${process.env.PORT || 3000}`)
 
 module.exports = {
   app,

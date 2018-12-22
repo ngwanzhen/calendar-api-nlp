@@ -33,7 +33,6 @@ module.exports = {
           resultsArr = nlpResults
         } else { parsedForm = nlpResults }
         if (req.body.seqentialTask && req.body.sequentialTask.filter(Boolean).length !== 0) {
-          console.log('what')
           let tempSequentialArr = []
           if (!Array.isArray(req.body.sequentialTask)) {
             tempSequentialArr.push(req.body.sequentialTask)
