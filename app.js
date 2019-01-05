@@ -11,7 +11,7 @@ const Handlebars = require('handlebars')
 // const flash = require('connect-flash')
 
 const corsOptions = {
-  origin: 'http://localhost:4200',
+  origin: 'https://safe-headland-74827.herokuapp.com',
   credentials: true,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
