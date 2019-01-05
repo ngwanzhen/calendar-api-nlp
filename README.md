@@ -4,9 +4,9 @@ User authentication using jwt cookie that would decrypt to user id
 Natural langauge processing for schedule management
 Database using postgres and sequelize
 
-deployed api: https://fathomless-chamber-45221.herokuapp.com/
-documentation: https://thecodingdog.github.io/calendar-api-nlp/
-demo with front-end using default user: https://safe-headland-74827.herokuapp.com/
+* deployed api: https://fathomless-chamber-45221.herokuapp.com/
+* documentation: https://thecodingdog.github.io/calendar-api-nlp/
+* demo with front-end using default user: https://safe-headland-74827.herokuapp.com/
 
 ## Deployment:
 process.env.NODE_ENV=production
